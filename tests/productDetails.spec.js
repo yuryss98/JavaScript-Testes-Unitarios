@@ -31,13 +31,30 @@ const productDetails = require('../src/productDetails');
 
 describe('6 - Implemente os casos de teste para a função `productDetails`', () => {
   it('Verifica se a função `productDetails` tem o comportamento esperado', () => {
-    fail('Teste vazio!');
-    // ESCREVA SEUS TESTES ABAIXO:
     // Teste se productDetails é uma função.
+    expect(typeof productDetails).toBe('function');
     // Teste se o retorno da função é um array.
+    expect(Array.isArray(productDetails())).toBe(true);
     // Teste se o array retornado pela função contém dois itens dentro.
+    expect(productDetails().length).toBe(2);
     // Teste se os dois itens dentro do array retornado pela função são objetos.
+    const retornoDaFunc = productDetails();
+    expect(typeof retornoDaFunc[0] && typeof retornoDaFunc[1]).toBe('object');
     // Teste se quando passado parâmetros diferentes entre si, os dois objetos também são diferentes entre si.
+    const diferença = productDetails('banana', 'batata');
+    expect((diferença[0] !== diferença[1])).toBe(true);
     // Teste se os dois productIds terminam com 123.
+    const produto1 = retornoDaFunc[0]['details']['productId'];
+    const produto2 = retornoDaFunc[1]['details']['productId'];
+    let ultimasPosicoesProduto1 = '';
+    let ultimasPosicoesProduto2 = '';
+    for (let i = produto1.length -3; i <= produto1.length -1; i += 1) {
+      ultimasPosicoesProduto1 += produto1[i];
+    }
+    for (let i = produto2.length -3; i <= produto2.length -1; i += 1) {
+      ultimasPosicoesProduto2 += produto1[i];
+    }
+    expect((ultimasPosicoesProduto1 === ultimasPosicoesProduto2)).toBe(true);
+
   });
 });
